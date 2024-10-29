@@ -75,6 +75,11 @@ public class Web {
 
     private static Donation[] parseDonations(JsonObject apiData) {
         JsonArray list = apiData.get("result").getAsJsonObject().get("data").getAsJsonArray();
-        return new Gson().fromJson(list, Donation[].class);
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Donation.class, new DonationDeserializer());
+        Gson gson = builder.create();
+
+        return gson.fromJson(list, Donation[].class);
     }
 }
