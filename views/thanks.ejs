@@ -15,7 +15,11 @@
     <h2>Details:</h2>
     <ul>
         <li>Supporter Name: <%= supporterName %></li>
-        <li>Support Message: <%= supportMessage %></li>
+        <% if (supportMessage) { %>
+            <li>Support Message: <%= supportMessage %></li>
+        <% } else { %>
+            <li>No Support Message.</li>
+        <% } %>
         <li>Unit Name: <%= unitName %></li>
         <li>Quantity: <%= quantity %></li>
         <li>Amount: <%= amount %></li>

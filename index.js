@@ -31,12 +31,12 @@ app.post('/donate/:name', (req, res) => {
 
         const selectedName = req.body.supporterNameSelect;
         const supporterName = selectedName === 'custom' ? req.body.supporterName : selectedName;
-        const supportMessage = req.body.supportMessage;
+        const supportMessage = req.body.supportMessage || null;
         const quantity = parseInt(req.body.quantity);
         const unit_id = req.body.unitID;
         const unit = units.find(unit => unit.id == unit_id);
 
-        if (!supporterName || !supportMessage || !quantity || !unit) throw new Error();
+        if (!supporterName || !quantity || !unit) throw new Error();
 
         const amount = unit.price * quantity;
 
